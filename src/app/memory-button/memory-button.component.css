@@ -1,0 +1,8 @@
+.buttonStyle{
+    height:50px;
+    width:50px;
+    cursor:pointer;
+}
+.buttonStyle:hover{
+    background-color: whitesmoke;
+}
