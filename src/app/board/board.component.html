@@ -1,0 +1,7 @@
+<table>
+  <tr *ngFor="let row of board">
+    <td *ngFor="let col of row">
+      <app-tile [tileData]="col" (selected)="onSelected($event)"></app-tile>
+    </td>
+  </tr>
+</table>

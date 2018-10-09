@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MemoryBoardComponent } from './memory-board.component';
+import { TileComponent } from './tile.component';
 
-describe('MemoryBoardComponent', () => {
-  let component: MemoryBoardComponent;
-  let fixture: ComponentFixture<MemoryBoardComponent>;
+describe('MemoryButtonComponent', () => {
+  let component: TileComponent;
+  let fixture: ComponentFixture<TileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemoryBoardComponent ]
+      declarations: [ TileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MemoryBoardComponent);
+    fixture = TestBed.createComponent(TileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

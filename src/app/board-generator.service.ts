@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { MemoryButtonData } from './memory-button-data';
+import { TileData } from './tile-data';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MemoryBoardService {
+export class BoardGeneratorService {
   private rows:any;
   private cols:any;
-  private board:MemoryButtonData[][];
+  private board:TileData[][];
 
   constructor() { 
   }
@@ -19,13 +19,13 @@ export class MemoryBoardService {
     for(var i=0;i<this.rows;i++ ){
       this.board.push([]);
       for(var j=0;j<this.cols;j++ ){
-        this.board[i].push(new MemoryButtonData(i,j, `(${i}, ${j})`));
+        this.board[i].push(new TileData(i,j, `(${i}, ${j})`));
         console.log(this.board[i][j])
       }
     }
     return this.board
   }
-   public getBoard():MemoryButtonData[][] {
+   public getBoard():TileData[][] {
      return this.board
    }
 }

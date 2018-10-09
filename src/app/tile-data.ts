@@ -1,4 +1,4 @@
-export class MemoryButtonData {
+export class TileData {
     public wordFound:Boolean;
     public isSelected:Boolean;
     constructor(public row, public col, public buttonWord){

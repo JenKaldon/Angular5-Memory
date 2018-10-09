@@ -1,7 +1,0 @@
-<table>
-  <tr *ngFor="let row of board">
-    <td *ngFor="let col of row">
-      <app-memory-button [memoryButtonData]="col" (selected)="onSelected($event)"></app-memory-button>
-    </td>
-  </tr>
-</table>
