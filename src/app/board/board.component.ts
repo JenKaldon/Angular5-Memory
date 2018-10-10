@@ -10,7 +10,7 @@ export class BoardComponent implements OnInit {
   private rows:number;
   private cols:number;
   private board:TileData[][];
-  private previousSelection:TileData;
+  private selections:TileData[] = [];
 
   constructor(private boardGeneratorService: BoardGeneratorService) {
   }
@@ -22,31 +22,19 @@ export class BoardComponent implements OnInit {
   }
   onSelected(tileData) {
     tileData.isSelected=true;
-    console.log(tileData)
+    this.selections.push(tileData);      
     
-    // if two elements are selected check if they are the same.
-    if(!this.previousSelection) {
-      this.previousSelection = tileData;      
-    } else { 
-      if(this.previousSelection.buttonWord === tileData.buttonWord){
-        this.previousSelection.wordFound=true;
-        tileData.wordFound=true;
-        
-        
+    if (this.selections.length==2){ 
+      if(this.selections[0].buttonWord === this.selections[1].buttonWord){
+        this.selections[0].wordFound=true;
+        this.selections[1].wordFound=true;
       } 
-      this.previousSelection.isSelected=false;
-      tileData.isSelected=false;
-      // add method to redraw board
-      this.previousSelection = null;
+    } else if (this.selections.length==3){
+        // Unselect first two selections
+        this.selections[0].isSelected=false
+        this.selections[1].isSelected=false
+        this.selections = new Array(tileData)
     }
   }
 }
-
-/**
- * ngOnInit() {
-    this.svc.getPokemons().subscribe(data=> {
-      this.pokemonData = data;
-    })
-  }
- */
 
