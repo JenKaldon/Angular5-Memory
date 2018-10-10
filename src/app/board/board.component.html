@@ -1,4 +1,5 @@
-<table>
+<!-- align="center" is deprecated in HTML5, but I can't find an alternative that works-->
+<table align="center" >
   <tr *ngFor="let row of board">
     <td *ngFor="let col of row">
       <app-tile [tileData]="col" (selected)="onSelected($event)"></app-tile>
