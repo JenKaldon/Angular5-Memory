@@ -1,9 +1,9 @@
-.buttonStyle{
+.tileButton{
     height:50px;
     width:50px;
     cursor:pointer;
 }
-.buttonStyle:hover{
+.tileButton:hover{
     background-color: whitesmoke;
 }
 
