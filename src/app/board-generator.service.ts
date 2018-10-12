@@ -9,7 +9,6 @@ import { WordListGeneratorService } from './word-list-generator.service';
 export class BoardGeneratorService {
   private rows:number;
   private cols:number;
-  public board:TileData[][]
   private selections:TileData[];
   
   constructor() { 
@@ -23,22 +22,19 @@ export class BoardGeneratorService {
     this.cols = cols;
   }
 
-  public getBoard(){
-    return this.board;
-  }
   public createBoard(){
     this.selections=[]
-    this.board=[];
+    var board=[];
     var wordListIndex = 0;
     var wordList = WordListGeneratorService.generateWordList(this.rows,this.cols);
     for(var i=0;i<this.rows;i++ ){
-      this.board.push([]);
+      board.push([]);
       for(var j=0;j<this.cols;j++ ){
-        this.board[i].push(new TileData(i,j, wordList[wordListIndex]));
+        board[i].push(new TileData(i,j, wordList[wordListIndex]));
         wordListIndex++;
       }
     }
-    return this.board
+    return board
   }
 
   public selectTile(tileData:TileData){
