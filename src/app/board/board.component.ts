@@ -24,5 +24,10 @@ export class BoardComponent implements OnInit {
   onSelected(tileData) {
     this.boardGeneratorService.selectTile(tileData);
   }
+
+  onClear(){
+    this.board = this.boardGeneratorService.createBoard();
+  }
+
 }
 

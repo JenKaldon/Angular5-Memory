@@ -4,3 +4,9 @@
     margin-right: auto;
 }
 
+.button-style{
+    cursor:pointer;
+    background-color: darkolivegreen;
+    color: white
+    
+}
