@@ -1,9 +1,16 @@
-.tileButton{
+.tile-button{
     height:50px;
     width:50px;
     cursor:pointer;
-}
-.tileButton:hover{
     background-color: whitesmoke;
 }
 
+.tile-button:hover{
+    background-color: rgb(220, 220, 220);
+}
+
+.tile-word{
+    height:50px;
+    width:50px;
+    pointer-events: none;
+}

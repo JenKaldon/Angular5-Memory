@@ -5,5 +5,7 @@ export class TileData {
         this.wordFound=false;
         this.isSelected=false;
     }
-    
+    public isVisible(){
+        return this.wordFound || this.isSelected;
+    }    
 }
