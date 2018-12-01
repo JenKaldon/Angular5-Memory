@@ -8,11 +8,11 @@ import { TileData } from '../tile-data';
 })
 export class TileComponent implements OnInit {
   @Input() private tileData: TileData;
-  @Output() public selected: EventEmitter<TileData>=new EventEmitter<TileData>();
-  constructor() { 
+  @Output() public selected: EventEmitter<TileData> = new EventEmitter<TileData>();
+  constructor() {
   }
 
-  onClick(){
+  onClick() {
     this.selected.emit(this.tileData);
   }
   ngOnInit() {
