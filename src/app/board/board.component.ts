@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardGeneratorService } from '../board-generator.service';
 import { TileData } from '../tile-data';
+import { BoardSize } from '../board-size';
 /**
  * This component generates a memory board filled with memory tiles.
  * This component uses the BoardGeneratorService
@@ -17,15 +18,18 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.boardGeneratorService.setRows(6);
-    this.boardGeneratorService.setCols(4);
-    this.board = this.boardGeneratorService.createBoard();
+    this.newGame(new BoardSize(6, 4));
   }
   onSelected(tileData) {
     this.boardGeneratorService.selectTile(tileData);
   }
 
   onClear() {
+    this.board = this.boardGeneratorService.createBoard();
+  }
+
+  newGame(boardSize: BoardSize) {
+    this.boardGeneratorService.setBoardSize(boardSize);
     this.board = this.boardGeneratorService.createBoard();
   }
 

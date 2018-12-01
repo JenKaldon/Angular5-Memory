@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { TileData } from './tile-data';
 import { WordListGeneratorService } from './word-list-generator.service';
+import { BoardSize } from './board-size';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,9 @@ export class BoardGeneratorService {
   constructor() {
   }
 
-  public setRows(rows: number) {
-    this.rows = rows;
-  }
-
-  public setCols(cols: number) {
-    this.cols = cols;
+  public setBoardSize(boardSize: BoardSize) {
+    this.rows = boardSize.rows;
+    this.cols = boardSize.cols;
   }
 
   public createBoard() {

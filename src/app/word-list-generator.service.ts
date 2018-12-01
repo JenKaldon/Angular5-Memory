@@ -2,7 +2,7 @@
 export class WordListGeneratorService {
 
   constructor() { }
-  public static generateWordList(rows: number, cols: number){
+  public static generateWordList(rows: number, cols: number) {
     // console.log("In generateWordList()")
     const numSquares: number = rows * cols;
     const numWords = Math.floor(numSquares / 2);
