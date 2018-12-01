@@ -7,12 +7,12 @@ import { TileData } from '../tile-data';
   styleUrls: ['./tile.component.css']
 })
 export class TileComponent implements OnInit {
-  @Input() private tileData: TileData;
-  @Output() public selected: EventEmitter<TileData>=new EventEmitter<TileData>();
-  constructor() { 
+  @Input() public tileData: TileData;
+  @Output() public selected: EventEmitter<TileData> = new EventEmitter<TileData>();
+  constructor() {
   }
 
-  onClick(){
+  onClick() {
     this.selected.emit(this.tileData);
   }
   ngOnInit() {
