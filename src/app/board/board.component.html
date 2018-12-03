@@ -1,3 +1,4 @@
+<app-new-game #newGame (newGame)="onNewGame($event)"></app-new-game>
 <table class="center" >
   <tr *ngFor="let row of board">
     <td *ngFor="let col of row">
@@ -5,6 +6,9 @@
     </td>
   </tr>
 </table>
-<button mat-raised-button (click)="onClear()" class="button-style" >
+<button mat-raised-button (click)="onNewBoard()" class="button-style" >
+  New Board
+</button>
+<button mat-raised-button (click)="onClearBoard()" class="button-style" >
   Clear Board
 </button>

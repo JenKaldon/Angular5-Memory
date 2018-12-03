@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { BoardGeneratorService} from '../board-generator.service';
 import { BoardSize } from '../board-size';
 
@@ -8,23 +8,27 @@ import { BoardSize } from '../board-size';
   styleUrls: ['./new-game.component.css']
 })
 export class NewGameComponent implements OnInit {
-  public rows: number;
-  public cols: number;
-
+  public numRows: number;
+  public numCols: number;
+  @ViewChild('newGameModal') public newGameModal;
   @Output() public newGame: EventEmitter<BoardSize> = new EventEmitter<BoardSize>();
 
   constructor(private boardGeneratorService: BoardGeneratorService) {
-    this.rows = 4;
-    this.cols = 6;
   }
 
   ngOnInit() {
   }
 
-  onClick() {
-    const boardSize = new BoardSize(this.rows, this.cols);
+  public showModal() {
+    this.numRows = 6;
+    this.numCols = 4;
+    this.newGameModal.show();
+  }
+  onSubmit() {
+    const boardSize = new BoardSize(this.numRows, this.numCols);
     this.newGame.emit(boardSize);
-    console.log(`Rows=${this.rows} Cols=${this.cols}`);
+    console.log(`Rows=${this.numRows} Cols=${this.numCols}`);
+    this.newGameModal.hide();
   }
 
 }
