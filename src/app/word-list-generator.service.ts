@@ -1,6 +1,5 @@
 
 export class WordListGeneratorService {
-
   constructor() { }
   public static generateWordList(rows: number, cols: number) {
     // console.log("In generateWordList()")

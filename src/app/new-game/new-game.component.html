@@ -11,14 +11,14 @@
           <h4 class="modal-title w-100">Enter Game Size</h4>
         </div>
         <div class="modal-body">
-          <div class="md-form">
-            <input type="text" [(ngModel)]="numRows" name="rowInputId" id="rowInputId" mdbActive class="form-control">
             <label for="rowInputId">Rows: </label>
-          </div>
-          <div class="md-form">
-            <input type="text" [(ngModel)]="numCols" name="colInputId" id="colInputId" mdbActive class="form-control">
-            <label for="colInputId">Cols:</label>
-          </div>
+            <br>
+            <input type="text" [(ngModel)]="numRows" name="rowInputId" id="rowInputId" class="form-control">
+            <br>
+            <label for="colInputId">Cols: </label>
+            <br>
+            <input type="text" [(ngModel)]="numCols" name="colInputId" id="colInputId" class="form-control">
+            <br>
         </div>
         <div class="modal-footer">
           <button type="submit" class="button-style relative waves-light"> submit</button>
