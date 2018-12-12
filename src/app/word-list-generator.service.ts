@@ -1,8 +1,15 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class WordListGeneratorService {
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  public static generateWordList(rows: number, cols: number) {
+  public generateWordList(rows: number, cols: number) {
     const numWords = this.getNumWords(rows, cols);
 
     let wordList: any[] = [];
@@ -14,7 +21,7 @@ export class WordListGeneratorService {
     return this.randomizeWordList(wordList);
   }
 
-  public static getNumWords(rows: number, cols: number) {
+  public getNumWords(rows: number, cols: number) {
     // console.log("In getNumWords()")
     const numSquares: number = rows * cols;
     const numWords = Math.floor(numSquares / 2);
@@ -24,7 +31,7 @@ export class WordListGeneratorService {
     return numWords;
   }
 
-  private static randomizeWordList(wordList: any[]) {
+  private randomizeWordList(wordList: any[]) {
     // rendomize wordList
     for (let i = wordList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

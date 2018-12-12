@@ -12,7 +12,7 @@ export class BoardGeneratorService {
   private cols: number;
   private selections: TileData[];
 
-  constructor() {
+  constructor(private wordListGenerator: WordListGeneratorService) {
   }
 
   public setBoardSize(boardSize: BoardSize) {
@@ -24,7 +24,7 @@ export class BoardGeneratorService {
     this.selections = [];
     const board = [];
     let wordListIndex = 0;
-    const wordList = WordListGeneratorService.generateWordList(this.rows, this.cols);
+    const wordList = this.wordListGenerator.generateWordList(this.rows, this.cols);
     for (let i = 0; i < this.rows; i++ ) {
       board.push([]);
       for (let j = 0; j < this.cols; j++ ) {
