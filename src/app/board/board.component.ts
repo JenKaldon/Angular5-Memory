@@ -26,7 +26,6 @@ export class BoardComponent implements OnInit {
   }
 
   onClearBoard() {
-    // this.board = this.boardGeneratorService.createBoard();
     this.boardGeneratorService.createBoard().subscribe(board => this.board = board);
   }
 
