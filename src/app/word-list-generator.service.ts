@@ -30,7 +30,7 @@ export class WordListGeneratorService {
   }
 
   public getWords(numWords: number): Observable<string[]> {
-    const url = 'http://localhost:8080/words?numWords=' + numWords.toString();
+    const url = 'http://localhost:8080/api/v1/words?numWords=' + numWords.toString();
     return this.http.get<string[]>(url);
 
   }
