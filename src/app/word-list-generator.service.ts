@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { TileData } from './tile-data';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,20 +12,15 @@ export class WordListGeneratorService {
     private http: HttpClient
   ) { }
 
-  public generateWordList(rows: number, cols: number) {
+  public generateWordList(rows: number, cols: number): Observable<string[]> {
     const numWords = this.getNumWords(rows, cols);
-
-    let wordList: any[] = [];
-    for (let i = 0; i < numWords; i++) {
-      wordList.push(i);
-    }
-    wordList = wordList.concat(wordList);
-
-    return this.randomizeWordList(wordList);
+    const wordListObservable = this.getWords(numWords);
+    return wordListObservable.pipe<string[]>(map((wordList: string[]) => {
+      return wordList.concat(wordList);
+    }));
   }
 
   public getNumWords(rows: number, cols: number) {
-    // console.log("In getNumWords()")
     const numSquares: number = rows * cols;
     const numWords = Math.floor(numSquares / 2);
     if (numWords * 2 !== numSquares) {
@@ -31,7 +29,13 @@ export class WordListGeneratorService {
     return numWords;
   }
 
-  private randomizeWordList(wordList: any[]) {
+  public getWords(numWords: number): Observable<string[]> {
+    const url = 'http://localhost:8080/words?numWords=' + numWords.toString();
+    return this.http.get<string[]>(url);
+
+  }
+
+  public randomizeWordList(wordList: string[]) {
     // rendomize wordList
     for (let i = wordList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -39,7 +43,6 @@ export class WordListGeneratorService {
       wordList[j] = wordList[i];
       wordList[i] = randomWord;
     }
-    // console.log(`WordList=${wordList}`)
     return wordList;
   }
 }

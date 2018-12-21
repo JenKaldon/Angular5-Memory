@@ -26,7 +26,8 @@ export class BoardComponent implements OnInit {
   }
 
   onClearBoard() {
-    this.board = this.boardGeneratorService.createBoard();
+    // this.board = this.boardGeneratorService.createBoard();
+    this.boardGeneratorService.createBoard().subscribe(board => this.board = board);
   }
 
   onNewBoard() {
@@ -35,7 +36,7 @@ export class BoardComponent implements OnInit {
 
   onNewGame(boardSize: BoardSize) {
     this.boardGeneratorService.setBoardSize(boardSize);
-    this.board = this.boardGeneratorService.createBoard();
+    this.boardGeneratorService.createBoard().subscribe(board => this.board = board);
   }
 }
 

@@ -27,7 +27,6 @@ export class NewGameComponent implements OnInit {
   onSubmit() {
     const boardSize = new BoardSize(this.numRows, this.numCols);
     this.newGame.emit(boardSize);
-    console.log(`Rows=${this.numRows} Cols=${this.numCols}`);
     this.newGameModal.hide();
   }
 

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TileData } from './tile-data';
 import { WordListGeneratorService } from './word-list-generator.service';
 import { BoardSize } from './board-size';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,24 +22,26 @@ export class BoardGeneratorService {
     this.cols = boardSize.cols;
   }
 
-  public createBoard() {
+  public createBoard(): Observable<TileData[][]> {
     this.selections = [];
-    const board = [];
     let wordListIndex = 0;
-    const wordList = this.wordListGenerator.generateWordList(this.rows, this.cols);
-    for (let i = 0; i < this.rows; i++ ) {
-      board.push([]);
-      for (let j = 0; j < this.cols; j++ ) {
-        board[i].push(new TileData(i, j, wordList[wordListIndex]));
-        wordListIndex++;
-      }
-    }
-    return board;
+
+    return this.wordListGenerator.generateWordList(this.rows, this.cols)
+        .pipe<TileData[][]>(map((wordList: string[]) => {
+          const board: TileData[][] = [];
+          wordList = this.wordListGenerator.randomizeWordList(wordList);
+          for (let i = 0; i < this.rows; i++ ) {
+            board.push([]);
+            for (let j = 0; j < this.cols; j++ ) {
+              board[i].push(new TileData(i, j, wordList[wordListIndex]));
+              wordListIndex++;
+            }
+          }
+          return board;
+        }));
   }
 
   public selectTile(tileData: TileData) {
-    // console.log(`In selectTile("${TileData}`);
-    // console.log(this.selections)
     tileData.isSelected = true;
     this.selections.push(tileData);
 
