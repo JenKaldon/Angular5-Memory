@@ -23,6 +23,10 @@ export class BoardComponent implements OnInit {
   }
   onSelected(tileData: TileData) {
     this.boardGeneratorService.selectTile(tileData);
+    if (this.boardGeneratorService.gameWon()) {
+      alert('You Won!!!');
+    }
+
   }
 
   onClearBoard() {
@@ -38,4 +42,5 @@ export class BoardComponent implements OnInit {
     this.boardGeneratorService.createBoard().subscribe(board => this.board = board);
   }
 }
+
 

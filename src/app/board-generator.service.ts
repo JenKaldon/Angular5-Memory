@@ -13,6 +13,7 @@ export class BoardGeneratorService {
   private rows: number;
   private cols: number;
   private selections: TileData[];
+  private numTilesVisible: number;
 
   constructor(private wordListGenerator: WordListGeneratorService) {
   }
@@ -22,9 +23,14 @@ export class BoardGeneratorService {
     this.cols = boardSize.cols;
   }
 
+  public gameWon(): boolean {
+    return this.numTilesVisible === this.rows * this.cols;
+  }
+
   public createBoard(): Observable<TileData[][]> {
     this.selections = [];
     let wordListIndex = 0;
+    this.numTilesVisible = 0;
 
     return this.wordListGenerator.generateWordList(this.rows, this.cols)
         .pipe<TileData[][]>(map((wordList: string[]) => {
@@ -49,6 +55,7 @@ export class BoardGeneratorService {
       if (this.selections[0].buttonWord === this.selections[1].buttonWord) {
         this.selections[0].wordFound = true;
         this.selections[1].wordFound = true;
+        this.numTilesVisible += 2;
       }
     } else if (this.selections.length === 3) {
         // Unselect first two selections
